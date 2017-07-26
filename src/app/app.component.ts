@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {Nav, Platform, ModalController} from 'ionic-angular';
+import { HttpProvider } from  '../providers/http/http';
 
 import { HomePage } from '../pages/home/home';
 @Component({
@@ -9,14 +10,40 @@ import { HomePage } from '../pages/home/home';
 })
 export class MyApp {
   rootPage:any = HomePage;
-
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  @ViewChild(Nav) nav: Nav;
+  pages: Array<{title: string, component: any, method?: any}>;
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
+    public http: HttpProvider
+    ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+    this.pages = [
+      {title: 'My Projects ', component: 'ListProjects'},
+      {title: 'View Tasks ', component: 'PendingTasks'},
+      {title: 'Logout', component: 'HomePage', method: 'logout'}
+    ];
+
       statusBar.styleDefault();
       splashScreen.hide();
     });
   }
+
+  openPage(page) {
+
+    if (page.method && page.method === 'logout') {
+      this.http.logout();      
+      this.nav.setRoot(HomePage);
+    }
+
+    if (page.component === 'ListProjects') {
+      this.nav.setRoot('ListProjectsPage');
+    }
+
+
+  }
+
+
+
 }
 

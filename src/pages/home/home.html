@@ -1,14 +1,43 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content padding id="page4" class="background">
+<ion-slides pager>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+	  <ion-slide>
+	    <h2>ProjectBox</h2>
+	    <h5>The Swissknife for your next Project</h5>
+	   <ion-img width="200" src="assets/img/slave1.jpg"></ion-img>
+	  </ion-slide>
+
+	<ion-slide>
+
+		<h1 id="page-heading1" style="text-align:center;">
+			Join ProjectBox
+		</h1>
+
+		<ion-img width="200" src="assets/img/slave2.jpg"></ion-img>
+
+		<ion-row>
+	    <ion-col col-3>
+		</ion-col>
+
+	    <ion-col col-7>
+	    <ion-row>
+		<button id="page-button3" ion-button class="lgreen" block (click)="signup()">
+			Sign up
+		</button>
+		</ion-row>
+		<ion-row>
+		<button id="page-button4" ion-button class="lgreen" block (click)="login()">
+			Log In
+		</button>
+		</ion-row>
+
+		</ion-col>
+    <ion-col col-2>
+		</ion-col>
+
+
+		</ion-row>
+	</ion-slide>
+
+</ion-slides>
 </ion-content>

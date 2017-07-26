@@ -1,0 +1,40 @@
+<!--
+  Generated template for the LogInPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>LogInPage</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding id="loginpage">
+
+  <form [formGroup]="formData" (ngSubmit)="login()">
+    <ion-list id="login-list1">
+  
+      <ion-item id="login-input5">
+        <ion-label>
+          	Email
+        </ion-label>
+        <ion-input type="email" placeholder="" formControlName="email"  [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <ion-item id="login-input6">
+        <ion-label>
+          	Password
+        </ion-label>
+        <ion-input type="password" placeholder="" formControlName="password"  [(ngModel)]="password" ></ion-input>
+      </ion-item>
+    </ion-list>
+    <button [disabled]="!formData.valid" ion-button color="positive" block>
+     LogIn
+    </button>
+  </form>
+
+  
+</ion-content>

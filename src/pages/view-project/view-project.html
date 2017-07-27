@@ -18,12 +18,26 @@
 <ion-list>
   <ion-list-header>Tasks</ion-list-header>
 
-  <ion-item  *ngFor="let t of tasks" (click)="viewTask(t)">
- 	<ion-icon (click)="toggleDetails(t)" color="primary" item-right [name]="t.icon"></ion-icon>
+  <ion-item  *ngFor="let t of tasks">
+ 	<ion-icon class="expandicon" (click)="toggleDetails(t)" color="primary" item-right [name]="t.icon"></ion-icon>
+    <div id="taskmain"  (click)="viewTask(t)">
     <h3>{{t.title}}</h3>
-    <p>Status : {{t.status}}</p>
+
+    <p *ngIf=" t.status == 'closed'" >Status :  Closed </p>
+    <p *ngIf=" t.status == 'hold'" > Status : On Hold </p>
+    <p *ngIf=" t.status == 'inprogress'" >Status : In Progress </p>
+    <p *ngIf=" t.status == 'open'" >Status : Open </p>
+
+
+    </div>
      <ion-note item-end></ion-note>
-     <div *ngIf="t.showDetails">{{t.desc}}</div>
+     <div *ngIf="t.showDetails">
+     <p>{{t.desc}}</p>
+     <p class="assignee" *ngIf=" t.users[0]">  
+     <ion-icon name="contact"></ion-icon> 
+     <span text-capitalize>{{t.users[0].name}}</span>
+     </p>
+     </div>
   </ion-item>
 
 

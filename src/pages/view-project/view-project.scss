@@ -1,5 +1,8 @@
 page-view-project {
  ion-list {
+ 	#taskmain{
+ 		padding: 0;
+ 	}
     ion-item {
       background-color: transparent;
       padding-left: 0;
@@ -14,7 +17,10 @@ page-view-project {
         text-align: justify;
       }
     }
-    ion-icon  {
+    .assignee{
+    	font-size: 1.2em;
+    }
+    .expandicon  {
       font-size: 1.8rem;
       padding: 0;
       text-align: center;

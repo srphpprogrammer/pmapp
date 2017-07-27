@@ -6,6 +6,7 @@ export let config = {
   endpoint: {
     signup: 'signup',
     login: 'login',
+    project:'project',
     listprojects:'project'
   }
 };

@@ -1,5 +1,5 @@
 import {Component } from '@angular/core';
-import {NavController,IonicPage } from 'ionic-angular';
+import {NavController,IonicPage,MenuController } from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import { HttpProvider } from  '../../providers/http/http'
 
@@ -12,7 +12,8 @@ export class HomePage {
   constructor(
   	public navCtrl: NavController,
     private storage: Storage,
-    public http: HttpProvider
+    public http: HttpProvider,
+    public menu: MenuController
   	) {
 
   }
@@ -22,6 +23,7 @@ export class HomePage {
       if(data === true){
         this.navCtrl.setRoot('AccountHomePage');
       }else{
+        //this.menu.swipeEnable(false, 'myMenu');
         return true;
       }
     });

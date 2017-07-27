@@ -10,7 +10,7 @@ import {Storage} from '@ionic/storage';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { HttpProvider } from '../providers/http/http';
-import {AuthHttp, AuthConfig} from 'angular2-jwt';
+/*import {AuthHttp, AuthConfig} from 'angular2-jwt';
 let storage = new Storage({});
 
 export function getAuthHttp(http) {
@@ -20,7 +20,7 @@ export function getAuthHttp(http) {
     noJwtError: true,
     tokenGetter: (() => storage.get('token')),
   }), http);
-}
+}*/
 
 @NgModule({
   declarations: [
@@ -43,11 +43,11 @@ export function getAuthHttp(http) {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HttpProvider,
-    {
+/*    {
       provide: AuthHttp,
       useFactory: getAuthHttp,
       deps: [Http]
-    }
+    }*/
   ]
 })
 export class AppModule {}

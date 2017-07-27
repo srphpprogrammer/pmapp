@@ -1,0 +1,43 @@
+<ion-header>
+
+  <ion-navbar>
+
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Create Project
+    </ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="formData" (ngSubmit)="create()">
+    <ion-item id="createProject-input5">
+      <ion-label stacked>
+        Title
+      </ion-label>
+      <ion-input type="text" placeholder="" formControlName="title"  [(ngModel)]="title"></ion-input>
+    </ion-item>
+    <ion-item id="createProject-textarea1">
+      <ion-label stacked>
+        Description
+      </ion-label>
+      <ion-textarea placeholder="" formControlName="desc"  [(ngModel)]="desc"></ion-textarea>
+    </ion-item>
+      <div class="spacer" style="width:300px;height:44px;" id="createProject-spacer2"></div>
+
+     <button id="createProject-button3" ion-button color="balanced" block [disabled]="!formData.valid" ion-button color="positive" block>
+    Create
+  </button>
+  </form>
+  
+<!--  
+    <button ion-button color="balanced" block>
+      Sign up
+    </button>
+ -->
+</ion-content>

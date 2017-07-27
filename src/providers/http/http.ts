@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-//import { Http, RequestOptions, URLSearchParams } from '@angular/http';
 import * as AppConfig from '../../app/app.config';
 import {Storage} from '@ionic/storage';
-import {AuthHttp} from 'angular2-jwt';
-import { Http  } from '@angular/http';
-
+//import {AuthHttp} from 'angular2-jwt';
+import {Observable} from 'rxjs/Rx';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/observable/fromPromise';
+import { Http, RequestOptions, URLSearchParams } from '@angular/http';
 /*
   Generated class for the HttpProvider provider.
 
@@ -22,9 +23,9 @@ export class HttpProvider {
 /*    this.storage.get('token').then(token => {
      return new Promise(resolve => { this.token = token});
     }).catch(e => {
-      this.token = null;
-    });*/
-
+     console.log(e,"Error")
+    });
+*/
 
   }
 
@@ -53,9 +54,43 @@ export class HttpProvider {
     });
   }
 
-  get(url:string){
-    return this.http.get(url);
+  getToken(){
+     return Observable.fromPromise(this.storage.get('token'));
   }
+
+
+  get(url:any){
+    return this.getToken().flatMap( api_token => {
+      let params: URLSearchParams = new URLSearchParams();
+      let requestOptions = new RequestOptions();
+      requestOptions.search = params;
+      params.set('api_token', api_token);
+      return this.http.get(url, requestOptions);
+  });
+
+  /*
+  let params: URLSearchParams = new URLSearchParams();
+  let requestOptions = new RequestOptions();
+  requestOptions.search = params;
+  params.set('api_token', 'vwsby6oK2cMKJuNfmLBYgNMBKpeYvBDuAIhPfF0PJnsGsS5C5rmPXph7QdHY');
+  return this.http.get(url, requestOptions);
+  */
+
+  }
+
+  post(url:any, data:any){
+
+    return this.getToken().flatMap( api_token => {
+      let params: URLSearchParams = new URLSearchParams();
+      let requestOptions = new RequestOptions();
+      requestOptions.search = params;
+      params.set('api_token', api_token);
+      return this.http.post(url,JSON.stringify(data),requestOptions);
+    });
+
+  }
+
+  
 
   logout(){
     this.storage.remove('name');

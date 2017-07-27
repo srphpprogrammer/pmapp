@@ -28,20 +28,26 @@ export class ListProjectsPage {
 
 
 
-ionViewDidLoad() {
-
-  	  this.http.get(this.config.url.api+this.config.endpoint.listprojects)
+  ionViewDidLoad() {
+  	 this.http.get(this.config.url.api+this.config.endpoint.project)
     .subscribe(
       data => {
       	this.projects = data.json();
+      	console.log(data);
       	console.log(this.projects);
       },
       error => {
       	console.log(error,"Error Caught");
       });
-
   }
 
+  createProject(){
+  	this.navCtrl.push('CreateProjectPage');
+  }
+
+  viewProject(page: any){
+  	this.navCtrl.push('ViewProjectPage',page);
+  }
 
 
 }

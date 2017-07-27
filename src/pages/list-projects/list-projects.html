@@ -18,16 +18,15 @@
 <ion-list>
 
   <ion-list-header>
-  	<button ion-button outline item-end icon-left>
-      <ion-icon name="star"></ion-icon>
-      Left Icon
+  	<button (click)="createProject()" ion-button>
+      Create Project
     </button>
   </ion-list-header>
 
-  <ion-item>
-    <h3>Don't Know What To Do!</h3>
-    <p>Status : Open</p>
-     <ion-note item-end></ion-note>
+  <ion-item *ngFor="let p of projects" (click)="viewProject(p)">
+    <h3>{{p.title  }}</h3>
+    <p>{{p.desc}}</p>
+    <ion-note item-end></ion-note>
   </ion-item>
 
 
